@@ -7,5 +7,5 @@ class ApiConstants {
   static final String token = "token";
   static final String refreshToken = "refreshToken";
   static final String requiresToken = "requires-token";
-  static final String expiredAt = "expiredAt";
+  static final String expiresAt = "expiresAt";
 }

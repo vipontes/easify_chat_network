@@ -14,10 +14,10 @@ class AppInterceptors extends Interceptor {
 
       var token = prefs.get(ApiConstants.token);
       final tokenDecoded = JwtHelper.parseJwt(token);
-      var expiredAt = tokenDecoded[ApiConstants.expiredAt];
+      var expiresAt = tokenDecoded[ApiConstants.expiresAt];
 
       DateTime parsedDate =
-          DateTime.fromMillisecondsSinceEpoch(expiredAt * 1000);
+          DateTime.fromMillisecondsSinceEpoch(expiresAt * 1000);
       final now = DateTime.now();
       var difference = parsedDate.difference(now).inSeconds;
       if (difference > 0) {
@@ -25,8 +25,8 @@ class AppInterceptors extends Interceptor {
       } else {
         final refreshToken = prefs.get(ApiConstants.refreshToken);
         final refreshTokenDecoded = JwtHelper.parseJwt(refreshToken);
-        expiredAt = refreshTokenDecoded[ApiConstants.expiredAt];
-        parsedDate = DateTime.fromMillisecondsSinceEpoch(expiredAt * 1000);
+        expiresAt = refreshTokenDecoded[ApiConstants.expiresAt];
+        parsedDate = DateTime.fromMillisecondsSinceEpoch(expiresAt * 1000);
         difference = parsedDate.difference(now).inSeconds;
         if (difference > 0) {
           // LoginService().refreshToken(refreshToken).then((res) async {

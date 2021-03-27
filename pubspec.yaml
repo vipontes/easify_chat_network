@@ -9,11 +9,11 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  intl: ^0.16.1
+  intl: ^0.17.0
   analyzer: ^0.39.11
   analyzer_plugin: ^0.2.1
   json_serializable: ^3.2.3
-  path_provider: ^1.5.1
+  path_provider: ^2.0.1
   uuid: ^2.0.4
   connectivity: ^0.4.6+2
   dio: ^3.0.10

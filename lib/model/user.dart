@@ -5,18 +5,19 @@ class User {
   String userPass;
   int userAccessGranted;
   String userCreatedAt;
+  String userImage;
   String userToken;
   String userRefreshToken;
 
-  User(
-      {this.userId,
-      this.userName,
-      this.userPhone,
-      this.userPass,
-      this.userAccessGranted,
-      this.userCreatedAt,
-      this.userToken,
-      this.userRefreshToken});
+  User({this.userId,
+    this.userName,
+    this.userPhone,
+    this.userPass,
+    this.userAccessGranted,
+    this.userCreatedAt,
+    this.userImage,
+    this.userToken,
+    this.userRefreshToken});
 
   User.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
@@ -25,6 +26,7 @@ class User {
     userPass = json['userPass'];
     userAccessGranted = json['userAccessGranted'];
     userCreatedAt = json['userCreatedAt'];
+    userImage = json['userImage'];
     userToken = json['userToken'];
     userRefreshToken = json['userRefreshToken'];
   }
@@ -37,8 +39,42 @@ class User {
     data['userPass'] = this.userPass;
     data['userAccessGranted'] = this.userAccessGranted;
     data['userCreatedAt'] = this.userCreatedAt;
+    data['userImage'] = this.userImage;
     data['userToken'] = this.userToken;
     data['userRefreshToken'] = this.userRefreshToken;
+    return data;
+  }
+
+  static Map<int, dynamic> jsonFromList(List<User> list) {
+    Map<int, dynamic> data = Map<int, dynamic>();
+
+    int i = 0;
+    for (final item in list) {
+      data[i] = item.toJson();
+      i++;
+    }
+
+    return data;
+  }
+
+  static List<User> listFromJson(List<dynamic> json) {
+    List<User> data = List();
+
+    for (final item in json) {
+      User element = User(
+          userId: item["userId"],
+          userName: item["userName"],
+          userPhone: item["userPhone"],
+          userPass: item["userPass"],
+          userAccessGranted: item["userAccessGranted"],
+          userCreatedAt: item["userCreatedAt"],
+          userImage: item["userImage"],
+          userToken: item["userToken"],
+          userRefreshToken: item["userRefreshToken"]);
+
+      data.add(element);
+    }
+
     return data;
   }
 }
